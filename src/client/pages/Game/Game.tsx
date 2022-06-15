@@ -1,15 +1,17 @@
 import { useReducer } from "react";
-import { play } from "../../helpers/pages/game.ts";
-import styles from "../../styles/Game.module.css";
+import { play } from "../../api";
+import styles from "./Game.module.css";
 
 
 let result;
 
-export default () => {
+export function Game() {
     const [_, forceUpdate] = useReducer(x => x + 1, 0);
 
     const playGame = gesture => {
         const data = play(gesture);
+        // TODO: fix
+        // @ts-ignore
         result = data.result;
 
         forceUpdate();

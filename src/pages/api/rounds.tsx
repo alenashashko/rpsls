@@ -1,4 +1,4 @@
-import { playGame } from "../../../helpers/api/rounds";
+import { playGame } from "../../server/helpers/rounds";
 
 export default (req, res) => {
     const { gesture } = req.body;
