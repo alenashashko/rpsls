@@ -1,5 +1,7 @@
-export const play = gesture => fetch("/api/rounds", {
+import { Gesture } from "../../types";
+
+export const play = (gesture: Gesture) => fetch("/api/rounds", {
     method: 'POST',
-    body: { gesture }
+    body: JSON.stringify({ gesture })
 }).then(response => response.json())
 

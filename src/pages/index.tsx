@@ -10,7 +10,7 @@ export default function Home() {
 
             <main>
                 <h1>Rock Paper Scissors</h1>
-                <Link href="/game" to="/game">Play!</Link>
+                <Link href="/game">Play!</Link>
             </main>
         </div>
     )

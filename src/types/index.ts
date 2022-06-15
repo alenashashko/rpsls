@@ -1,0 +1,1 @@
+export type Gesture = "scissors" | "paper" | "rock" | "lizard" | "spock";
