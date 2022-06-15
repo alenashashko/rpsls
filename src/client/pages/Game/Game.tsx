@@ -1,11 +1,11 @@
 import { useState } from "react";
+import { gestures } from "../../../common/config";
+import { GameResult } from "../../../common/types";
 import { play } from "../../api";
 import styles from "./Game.module.css";
 
-const gestures = ["rock", "paper", "scissors", "lizard", "spock"];
-
 export function Game() {
-    const [gameResult, setGameResult] = useState<string | undefined>();
+    const [gameResult, setGameResult] = useState<GameResult | undefined>();
 
     const playGame = async (gesture) => {
         const {result} = await play(gesture);
