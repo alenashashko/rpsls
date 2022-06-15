@@ -1,33 +1,29 @@
-import { useReducer } from "react";
+import { useState } from "react";
 import { play } from "../../api";
 import styles from "./Game.module.css";
 
-
-let result;
+const gestures = ["rock", "paper", "scissors", "lizard", "spock"];
 
 export function Game() {
-    const [_, forceUpdate] = useReducer(x => x + 1, 0);
+    const [gameResult, setGameResult] = useState<string | undefined>();
 
-    const playGame = gesture => {
-        const data = play(gesture);
-        // TODO: fix
-        // @ts-ignore
-        result = data.result;
+    const playGame = async (gesture) => {
+        const {result} = await play(gesture);
 
-        forceUpdate();
+        setGameResult(result);
     };
 
-    if (result) return (
+    if (gameResult) return (
         <div className={styles.container}>
-          <h1 className={styles.result}>{result}</h1>
+          <h1 className={styles.result}>{gameResult}</h1>
         </div>
     );
 
     return (
         <div className={styles.container}>
-          <button onClick={() => playGame("rock")}>rock</button>
-          <button onClick={() => playGame("paper")}>paper</button>
-          <button onClick={() => playGame("scissors")}>scissors</button>
+          {gestures.map((gesture) => 
+            <button key={gesture} className={styles.button} onClick={() => playGame(gesture)}>{gesture}</button>
+          )}
         </div>
     );
 }
