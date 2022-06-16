@@ -1,14 +1,8 @@
 import { gestures } from "../../common/config";
 import { Gesture } from "../../common/types";
 
-export const playGame = (
-  options: { playerGesture: Gesture },
-  computerChoiceIndex?: number
-) => {
-  const computerGestureIndex =
-    typeof computerChoiceIndex === "number"
-      ? computerChoiceIndex
-      : Math.floor(Math.random() * gestures.length);
+export const playGame = (options: { playerGesture: Gesture }) => {
+  const computerGestureIndex = Math.floor(Math.random() * gestures.length);
   const computerGesture = gestures[computerGestureIndex];
   const { playerGesture } = options;
   const playerGestureIndex = gestures.findIndex((g) => g === playerGesture);

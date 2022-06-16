@@ -8,39 +8,41 @@ jest.mock("../../api", () => ({
   play: jest.fn(() => Promise.resolve("draw")),
 }));
 
-test("Initial view should contain 5 gesture buttons", () => {
-  const { container } = render(<Game />);
+describe("Game", () => {
+  test("initial view should contain 5 gesture buttons", () => {
+    const { container } = render(<Game />);
 
-  expect(container.querySelectorAll("button").length).toEqual(5);
-});
-
-gestures.forEach((gesture) => {
-  test(`Function play is called on gesture ${gesture} click`, () => {
-    render(<Game />);
-
-    fireEvent.click(screen.getByText(gesture));
-
-    expect(play).toHaveBeenLastCalledWith(gesture);
+    expect(container.querySelectorAll("button").length).toEqual(5);
   });
-});
 
-["computer", "player", "draw"].map((winner) => {
-  test(`on result equals ${winner} should render text`, async () => {
-    render(<Game />);
+  gestures.forEach((gesture) => {
+    test(`function play is called on gesture ${gesture} click`, () => {
+      render(<Game />);
 
-    const mockedPlay = play as jest.MockedFunction<typeof play>;
+      fireEvent.click(screen.getByText(gesture));
 
-    mockedPlay.mockImplementationOnce(() =>
-      Promise.resolve({ result: winner as GameResult })
-    );
+      expect(play).toHaveBeenLastCalledWith(gesture);
+    });
+  });
 
-    fireEvent.click(screen.getByText("scissors"));
+  ["computer", "player", "draw"].map((winner) => {
+    test(`on result equals ${winner} should render text`, async () => {
+      render(<Game />);
 
-    const searchForText =
-      winner === "draw" ? "It's a draw!" : `Winner is ${winner}!`;
+      const mockedPlay = play as jest.MockedFunction<typeof play>;
 
-    await waitFor(() => screen.getByText(searchForText));
+      mockedPlay.mockImplementationOnce(() =>
+        Promise.resolve({ result: winner as GameResult })
+      );
 
-    expect(screen.getByText(searchForText)).toBeTruthy();
+      fireEvent.click(screen.getByText("scissors"));
+
+      const searchForText =
+        winner === "draw" ? "It's a draw!" : `Winner is ${winner}!`;
+
+      await waitFor(() => screen.getByText(searchForText));
+
+      expect(screen.getByText(searchForText)).toBeTruthy();
+    });
   });
 });
