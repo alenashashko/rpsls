@@ -1,5 +1,6 @@
-import { Heading, Box, Container, VStack, Button } from "@chakra-ui/react";
+import { Heading, Container, VStack, Button } from "@chakra-ui/react";
 import { useState } from "react";
+import { FinalScreen } from "./FinalScreen/FinalScreen";
 import { gestures, gestureToImage } from "../../../common/config";
 import { GameResult } from "../../../common/types";
 import { play } from "../../api";
@@ -14,20 +15,9 @@ export function Game() {
     setGameResult(result);
   };
 
-  if (gameResult)
-    return (
-      <Container maxW="container.lg" marginTop="5vh">
-        <VStack spacing={5}>
-          <Heading as="h1" size="2xl" noOfLines={1} textAlign="center">
-            {gameResult === "draw"
-              ? "It's a draw!"
-              : `Winner is ${gameResult}!`}
-          </Heading>
-
-          <Box fontSize={120}>🎉</Box>
-        </VStack>
-      </Container>
-    );
+  if (gameResult) {
+    return <FinalScreen gameResult={gameResult} />;
+  }
 
   return (
     <Container maxW="container.lg" marginTop="5vh">
@@ -39,7 +29,7 @@ export function Game() {
         <VStack spacing={5}>
           {gestures.map((gesture) => (
             <Button key={gesture} minW={130} onClick={() => playGame(gesture)}>
-              {gestureToImage[gesture]}{" "}
+              {gestureToImage[gesture]}
               <span className={s.buttonText}>{gesture}</span>
             </Button>
           ))}
