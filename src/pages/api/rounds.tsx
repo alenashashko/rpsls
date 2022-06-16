@@ -2,13 +2,13 @@ import { gestures } from "../../common/config";
 import { playGame } from "../../server/helpers/playGame";
 
 export default (req, res) => {
-    const { gesture } = req.body;
+  const { gesture } = req.body;
 
-    if (gestures.includes(gesture) === false) {
-        return res.status(400).json({ status: 'bad request' });
-    }
+  if (gestures.includes(gesture) === false) {
+    return res.status(400).json({ status: "bad request" });
+  }
 
-    const result = playGame({ playerGesture: gesture });
+  const result = playGame({ playerGesture: gesture });
 
-    res.status(200).json({ result });
-}
+  res.status(200).json({ result });
+};

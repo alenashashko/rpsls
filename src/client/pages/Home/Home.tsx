@@ -19,7 +19,9 @@ export function Home() {
 
             <Box position="relative">
               <NextLink href="/game" passHref>
-                <Link fontSize="2xl" fontWeight="600" color="blue.400">Play!</Link>
+                <Link fontSize="2xl" fontWeight="600" color="blue.400">
+                  Play!
+                </Link>
               </NextLink>
             </Box>
           </VStack>

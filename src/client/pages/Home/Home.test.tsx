@@ -1,8 +1,8 @@
-import {render, screen} from '@testing-library/react';
-import { Home } from './Home';
+import { render, screen } from "@testing-library/react";
+import { Home } from "./Home";
 
-test('Initial view should contain link to start playing', () => {
-    const { container } = render(<Home />);
+test("Initial view should contain link to start playing", () => {
+  const { container } = render(<Home />);
 
-    expect(container.querySelector("a[href='/game']")).toBeTruthy();
+  expect(container.querySelector("a[href='/game']")).toBeTruthy();
 });
