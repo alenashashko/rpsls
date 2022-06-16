@@ -15,7 +15,7 @@ export function Game() {
 
     if (gameResult) return (
         <div className={styles.container}>
-          <h1 className={styles.result}>{gameResult}</h1>
+          <h1 className={styles.result}>Winner: {gameResult}</h1>
         </div>
     );
 
