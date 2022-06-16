@@ -8,12 +8,10 @@ Right now it does not work as intended, as the computer always wins!
 It's currently not working, a few bugs were added by the last person who touched this code..
 We'd like you to get this project up and running and complete the game logic by extending the rules to include the `lizard` and `spock` gestures
 
-
-
 ## ⛰️ 🧻 ✂️ 🦎 🖖
 
-
 #### Game logic
+
 - `scissors` beats `paper`
 - `paper` beats `rock`
 - `rock` beats `lizard`
@@ -52,6 +50,7 @@ AND I can play another game
 ```
 
 ### 💅
+
 Give the UI a lick of styles, be as basic or as fancy as you like!
 
 ### 🔍
@@ -60,7 +59,6 @@ Ensure at least the core game logic is tested and feel free refactor / restructu
 
 ---
 
-
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
@@ -68,6 +66,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 First, run the development server:
 
 ```bash
+nvm use
+
 npm run dev
 # or
 yarn dev

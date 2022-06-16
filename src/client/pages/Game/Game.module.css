@@ -1,0 +1,8 @@
+.buttonText {
+  display: inline-block;
+  padding-left: 10px;
+}
+
+.buttonText::first-letter {
+  text-transform: uppercase;
+}
