@@ -1,29 +1,50 @@
+import { Heading, Box, Container, VStack, Button } from "@chakra-ui/react";
 import { useState } from "react";
-import { gestures } from "../../../common/config";
+import { gestures, gestureToImage } from "../../../common/config";
 import { GameResult } from "../../../common/types";
 import { play } from "../../api";
-import styles from "./Game.module.css";
+import s from "./Game.module.css";
 
 export function Game() {
-    const [gameResult, setGameResult] = useState<GameResult | undefined>();
+  const [gameResult, setGameResult] = useState<GameResult | undefined>();
 
-    const playGame = async (gesture) => {
-        const {result} = await play(gesture);
+  const playGame = async (gesture) => {
+    const { result } = await play(gesture);
 
-        setGameResult(result);
-    };
+    setGameResult(result);
+  };
 
-    if (gameResult) return (
-        <div className={styles.container}>
-          <h1 className={styles.result}>Winner: {gameResult}</h1>
-        </div>
-    );
-
+  if (gameResult)
     return (
-        <div className={styles.container}>
-          {gestures.map((gesture) => 
-            <button key={gesture} className={styles.button} onClick={() => playGame(gesture)}>{gesture}</button>
-          )}
-        </div>
+      <Container maxW="container.lg" marginTop="5vh">
+        <VStack spacing={5}>
+          <Heading as="h1" size="2xl" noOfLines={1} textAlign="center">
+            {gameResult === "draw"
+              ? "It's a draw!"
+              : `Winner is ${gameResult}!`}
+          </Heading>
+
+          <Box fontSize={120}>🎉</Box>
+        </VStack>
+      </Container>
     );
+
+  return (
+    <Container maxW="container.lg" marginTop="5vh">
+      <VStack spacing={5} align="center">
+        <Heading as="h1" size="lg" noOfLines={1}>
+          Your choice:
+        </Heading>
+
+        <VStack spacing={5}>
+          {gestures.map((gesture) => (
+            <Button key={gesture} minW={130} onClick={() => playGame(gesture)}>
+              {gestureToImage[gesture]}{" "}
+              <span className={s.buttonText}>{gesture}</span>
+            </Button>
+          ))}
+        </VStack>
+      </VStack>
+    </Container>
+  );
 }

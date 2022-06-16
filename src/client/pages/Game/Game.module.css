@@ -1,12 +1,8 @@
-.result {
-  font-size: 3rem;
+.buttonText {
+    display: inline-block;
+    padding-left: 10px;
 }
 
-.button {
-  font-size: 1.5rem;
-}
-
-.container {
-  width: 100vw;
-  height: 100vh;
+.buttonText::first-letter {
+    text-transform: uppercase;
 }
